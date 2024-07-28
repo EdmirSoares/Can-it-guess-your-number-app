@@ -1,0 +1,45 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+export type propsNavigationStack = {
+	navigate(arg0: string, arg1: { data: any }): unknown;
+	push(arg0: string, arg1: { data: any }): unknown;
+	Home: undefined;
+	Explore: undefined;
+	News: undefined;
+	Main: undefined;
+	SignIn: undefined;
+	Favorites: undefined;
+	Notification: undefined;
+	Search: undefined;
+	Video: { data: any; offline: boolean };
+	Details: { id: string; continueWatchingId?: string };
+	DetailsEp: { data: any };
+	Logged: undefined;
+	LoggedOut: undefined;
+	Profile: undefined;
+	ReproductionPreference: undefined;
+	EditProfile: undefined;
+	VipPayment: { data: any };
+	RaffleIntroduction: undefined;
+	RaffleList: undefined;
+	MyRaffle: undefined;
+	FakeHome: undefined;
+	FakeDetails: { id: string };
+	FakeProfile: undefined;
+	FakeMain: undefined;
+	FakeExplore: undefined;
+	FakeSearch: undefined;
+	FakeFavorites: undefined;
+	Fake: undefined;
+	RafflePayment: { data: any };
+	RafflePurchaseDetails: { data: any };
+	RaffleHistoric: undefined;
+	RaffleDetails: undefined;
+	MyLevel: undefined;
+	ViewDownloads: undefined;
+	ViewSeasonDownloads: { title: string; mediaId: string };
+	NoConection: undefined;
+	OfflineScreen: { oldScreen: string };
+};
+
+export type propsStack = NativeStackNavigationProp<propsNavigationStack>;
