@@ -1,10 +1,11 @@
-import { Button, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import styles from "./styles";
 import useApp from "./useApp";
 import PrimaryButton from "../../components/PrimaryButton";
 import PlayButton from "../../components/PlayButton";
 import SecondaryButton from "../../components/SecondaryButton";
-import { Feather } from "@expo/vector-icons";
+import { Feather, Octicons, FontAwesome6, Entypo } from "@expo/vector-icons";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 export default function GameScreen() {
 	const {
@@ -12,159 +13,104 @@ export default function GameScreen() {
 		newGameHandler,
 		guessNumberMinHandler,
 		guessNumberMaxHandler,
-		userNumber2,
 		isvisible,
+		isDisabled,
 		guessRounds,
-		guessNumberMin,
-		guessNumberMax,
 		randomNumberGenerated,
 	} = useApp();
 
 	return (
 		<View style={styles.container}>
-			{/* <Button
-				title="Start Game"
-				onPress={() =>
-					randomNumberComputer({
-						min: guessNumberMin,
-						max: guessNumberMax,
-					})
-				}
-			/> */}
-			{!isvisible && (
-				<View>
-					<Button title="New Game" onPress={newGameHandler} />
-				</View>
-			)}
-			<View
-				style={{
-					flex: 2,
-					width: "100%",
-				}}
-			>
-				<View
-					style={{
-						flex: 1,
-						alignItems: "center",
-						justifyContent: "center",
-						borderWidth: 2,
-						borderRadius: 18,
-						borderColor: "#fff",
-						padding: 20,
-					}}
-				>
-					<View
-						style={{
-							width: "100%",
-							alignItems: "center",
-							justifyContent: "center",
-						}}
-					>
-						<Text
-							style={{
-								color: "#fff",
-								textAlign: "center",
-								fontFamily: "PixelifySans",
-								fontSize: 12,
-							}}
-						>
-							Is the chosen number greater or lesser?
-						</Text>
+			<View style={styles.resultContainer}>
+				<View style={styles.resultContent}>
+					<View style={styles.generatedNumberContainer}>
+						<Animated.View entering={FadeIn.duration(500)}>
+							<Text style={styles.generatedNumber}>
+								{randomNumberGenerated}
+							</Text>
+						</Animated.View>
 					</View>
-					<View
-						style={{
-							flex: 1,
-							width: "100%",
-							alignItems: "center",
-							justifyContent: "center",
-						}}
-					>
-						<Text
-							style={{
-								color: "#fff",
-								fontSize: 74,
-								fontFamily: "PixelifySans",
-							}}
-						>
-							{randomNumberGenerated}
-						</Text>
-					</View>
-					<View
-						style={{
-							alignSelf: "flex-end",
-						}}
-					>
-						<Text
-							style={{
-								color: "#fff",
-								textAlign: "center",
-								fontFamily: "PixelifySans",
-								fontSize: 12,
-							}}
-						>
+					<View style={styles.smallTextContainer}>
+						<Text style={styles.smallText}>
 							Attempts: {guessRounds}
 						</Text>
 					</View>
 				</View>
 			</View>
-			<View
-				style={{
-					flexDirection: "row",
-					alignItems: "center",
-					flex: 3,
-				}}
-			>
-				<View
-					style={{
-						flex: 1.6,
-						width: "100%",
-					}}
-				>
+			<View style={styles.descriptionTextContainer}>
+				{guessRounds > 0 ? (
+					<Text style={styles.descriptionText}>
+						{`Is the chosen number\ngreater or lesser?`}
+					</Text>
+				) : (
+					<Text style={styles.descriptionText}>
+						{`Press guess to\nstart the game.`}
+					</Text>
+				)}
+			</View>
+
+			<View style={styles.buttonsArea}>
+				<View style={styles.leftButtonArea}>
 					<PlayButton
-						textButton="Guess"
-						onPress={() =>
-							randomNumberComputer({
-								min: guessNumberMin,
-								max: guessNumberMax,
-							})
+						textButton={
+							isDisabled ? "Guess" : "Greater\nthan or less than?"
 						}
+						disabled={!isDisabled}
+						onPress={() => randomNumberComputer()}
 					/>
 				</View>
 
 				<View
-					style={{
-						flex: 1,
-						justifyContent: "center",
-						alignItems: "center",
-					}}
+					style={[
+						styles.rightButtonArea,
+						{ opacity: !isDisabled ? 1 : 0.3 },
+					]}
 				>
-					<View
-						style={{
-							alignSelf: "flex-end",
-						}}
-					>
+					<View style={styles.rightEndButtonContainer}>
 						<SecondaryButton
+							disabled={isDisabled}
 							icon={
-								<Feather name="minus" size={24} color="white" />
+								isDisabled ? (
+									<Octicons
+										name="blocked"
+										size={20}
+										color="#fff"
+									/>
+								) : (
+									<Feather
+										name="minus"
+										size={24}
+										color="white"
+									/>
+								)
 							}
 							onPress={guessNumberMinHandler}
 						/>
 					</View>
-					<View
-						style={{
-							alignSelf: "flex-start",
-						}}
-					>
+					<View style={styles.rightStartButtonContainer}>
 						<SecondaryButton
+							disabled={isDisabled}
 							icon={
-								<Feather name="plus" size={24} color="white" />
+								isDisabled ? (
+									<Octicons
+										name="blocked"
+										size={20}
+										color="#fff"
+									/>
+								) : (
+									<Feather
+										name="plus"
+										size={24}
+										color="#fff"
+									/>
+								)
 							}
 							onPress={guessNumberMaxHandler}
 						/>
 					</View>
 				</View>
 			</View>
-			<View style={{ alignItems: "center" }}>
+			<View style={styles.footerContainer}>
 				<PrimaryButton
 					textButton="Restart Game"
 					onPress={newGameHandler}

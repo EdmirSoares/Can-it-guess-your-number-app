@@ -4,15 +4,21 @@ import { ReactNode } from "react";
 
 interface SecondaryButtonProps {
 	onPress: () => void;
+	disabled?: boolean;
 	icon: ReactNode;
 }
 
 export default function SecondaryButton({
 	onPress,
+	disabled,
 	icon,
 }: SecondaryButtonProps) {
 	return (
-		<TouchableOpacity style={styles.button} onPress={() => onPress()}>
+		<TouchableOpacity
+			style={styles.button}
+			onPress={() => onPress()}
+			disabled={disabled}
+		>
 			{icon}
 		</TouchableOpacity>
 	);

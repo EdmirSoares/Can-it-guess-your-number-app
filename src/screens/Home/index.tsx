@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import PrimaryButton from "../../components/PrimaryButton";
 import SecondaryButton from "../../components/SecondaryButton";
-import { FontAwesome6, Ionicons } from "@expo/vector-icons";
+import Animated, { Easing, FadeIn } from "react-native-reanimated";
+import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
 import useApp from "./useApp";
 import { useState } from "react";
@@ -28,26 +29,36 @@ export default function Home() {
 					{!isvisible && (
 						<>
 							<View style={styles.contentStart}>
-								<Text style={styles.startText}>
-									{/* {`Outsmart\nThe\nComputer\nCan\nit\nGuess\nYour\nNumber?`} */}
-									{`OUTSMART\nTHE COMPUTER!\nCAN IT\nGUESS\nYOUR\nNUMBER?`}
-								</Text>
-								<Text style={styles.descriptionStartText}>
-									{`Think of a number\n			between 1 and 99 and see
+								<Animated.View entering={FadeIn.duration(500)}>
+									<Text style={styles.startText}>
+										{/* {`Outsmart\nThe\nComputer\nCan\nit\nGuess\nYour\nNumber?`} */}
+										{`OUTSMART\nTHE COMPUTER!\nCAN IT\nGUESS\nYOUR\nNUMBER?`}
+									</Text>
+								</Animated.View>
+								<Animated.View
+									entering={FadeIn.duration(500).delay(300)}
+								>
+									<Text style={styles.descriptionStartText}>
+										{`Think of a number\n			between 1 and 99 and see
 									if the computer can guess it!`}
-								</Text>
+									</Text>
+								</Animated.View>
 							</View>
 							<View style={styles.startButtonContainer}>
-								<TouchableOpacity
-									style={styles.startButton}
-									onPress={() =>
-										setIsVisible((prev) => !prev)
-									}
+								<Animated.View
+									entering={FadeIn.duration(500).delay(600)}
 								>
-									<Text style={styles.startButtonText}>
-										Start
-									</Text>
-								</TouchableOpacity>
+									<TouchableOpacity
+										style={styles.startButton}
+										onPress={() =>
+											setIsVisible((prev) => !prev)
+										}
+									>
+										<Text style={styles.startButtonText}>
+											Start
+										</Text>
+									</TouchableOpacity>
+								</Animated.View>
 							</View>
 						</>
 					)}
@@ -62,45 +73,77 @@ export default function Home() {
 									gap: 32,
 								}}
 							>
-								<View style={styles.inputContainer}>
-									<TextInput
-										style={styles.numberInput}
-										maxLength={2}
-										keyboardType="numeric"
-										cursorColor={"#000"}
-										value={enteredNumber}
-										onChangeText={(text) =>
-											setEnteredNumber(text)
-										}
-									/>
-								</View>
+								<Animated.View entering={FadeIn.duration(500)}>
+									<View style={styles.inputContainer}>
+										<Animated.View
+											entering={FadeIn.duration(
+												500
+											).delay(300)}
+										>
+											<TextInput
+												style={styles.numberInput}
+												maxLength={2}
+												keyboardType="numeric"
+												cursorColor={"#000"}
+												value={enteredNumber}
+												onChangeText={(text) =>
+													setEnteredNumber(text)
+												}
+											/>
+										</Animated.View>
+									</View>
+								</Animated.View>
 								<View style={styles.textWrapper}>
-									<Text style={styles.infoText}>
-										Think of a number
-									</Text>
-									<Text style={styles.infoSubText}>
-										Enter a number between 1 and 99 above,
-										press confirm to start the game.
-									</Text>
+									<Animated.View
+										entering={FadeIn.duration(500).delay(
+											700
+										)}
+									>
+										<Text style={styles.infoText}>
+											Think of a number
+										</Text>
+									</Animated.View>
+									<Animated.View
+										entering={FadeIn.duration(500).delay(
+											1000
+										)}
+									>
+										<Text style={styles.infoSubText}>
+											Enter a number between 1 and 99
+											above, press confirm to start the
+											game.
+										</Text>
+									</Animated.View>
 								</View>
 							</View>
 							<View style={styles.buttonContainer}>
 								<View style={styles.buttonContainer}>
-									<SecondaryButton
-										onPress={clearInputHandler}
-										icon={
-											<Ionicons
-												name="trash-bin-outline"
-												size={24}
-												color="white"
-											/>
-										}
-									/>
-
-									<PrimaryButton
-										textButton="Confirm"
-										onPress={confirmInputHandler}
-									/>
+									<Animated.View
+										entering={FadeIn.duration(500).delay(
+											500
+										)}
+									>
+										<SecondaryButton
+											onPress={clearInputHandler}
+											icon={
+												<Ionicons
+													name="trash-bin-outline"
+													size={24}
+													color="white"
+												/>
+											}
+										/>
+									</Animated.View>
+									<Animated.View
+										entering={FadeIn.duration(500).delay(
+											500
+										)}
+									>
+										<PrimaryButton
+											textButton="Confirm"
+											onPress={confirmInputHandler}
+										/>
+									</Animated.View>
 								</View>
 							</View>
 						</>
