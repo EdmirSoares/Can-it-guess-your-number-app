@@ -5,6 +5,8 @@ type RootStackParamList = {
 	Home: undefined;
 	GameScreen: { userNumber: number };
 	WinScreen: { userNumber: number; guessRounds: number };
+	GameOverPlayerScreen: undefined;
+	GameOverComputerScreen: undefined;
 };
 
 type GameScreenNavigationProp = StackNavigationProp<

@@ -4,7 +4,7 @@ import useApp from "./useApp";
 import PrimaryButton from "../../components/PrimaryButton";
 import PlayButton from "../../components/PlayButton";
 import SecondaryButton from "../../components/SecondaryButton";
-import { Feather, Octicons, FontAwesome6, Entypo } from "@expo/vector-icons";
+import { Feather, Octicons } from "@expo/vector-icons";
 import Animated, { FadeIn } from "react-native-reanimated";
 
 export default function GameScreen() {
@@ -13,7 +13,6 @@ export default function GameScreen() {
 		newGameHandler,
 		guessNumberMinHandler,
 		guessNumberMaxHandler,
-		isvisible,
 		isDisabled,
 		guessRounds,
 		randomNumberGenerated,

@@ -6,6 +6,8 @@ import GameScreen from "../src/screens/GameScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import WinScreen from "../src/screens/WinScreen";
 import { useEffect } from "react";
+import GameOverPlayerScreen from "../src/screens/GameOverPlayerScreen";
+import GameOverComputerScreen from "../src/screens/GameOverCpuScreen";
 
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -38,6 +40,14 @@ function Provider() {
 				<Stack.Screen name="Home" component={Home} />
 				<Stack.Screen name="GameScreen" component={GameScreen} />
 				<Stack.Screen name="WinScreen" component={WinScreen} />
+				<Stack.Screen
+					name="GameOverPlayerScreen"
+					component={GameOverPlayerScreen}
+				/>
+				<Stack.Screen
+					name="GameOverComputerScreen"
+					component={GameOverComputerScreen}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
