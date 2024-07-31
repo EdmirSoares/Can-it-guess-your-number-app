@@ -8,9 +8,9 @@ import {
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import useApp from "./useApp";
 import styles from "./styles";
-//TODO continuar a implementar essa tela e a condição de vitória do player
+
 export default function GameOverPlayerScreen() {
-	const { fadeAnim, handleNavigateToGameScreen } = useApp();
+	const { fadeAnim, losePhrase, handleNavigateToGameScreen } = useApp();
 	return (
 		<View style={styles.container}>
 			<View style={styles.content}>
@@ -21,15 +21,13 @@ export default function GameOverPlayerScreen() {
 				/>
 				<View style={styles.descriptionTextContainer}>
 					<Text style={styles.descriptionText}>
-						This time you won...
+						Looks like you cheated...
 					</Text>
-					<Text style={styles.descriptionText}>
-						The computer has lost!
-					</Text>
+					<Text style={styles.descriptionText}>{losePhrase}</Text>
 				</View>
 				<View style={styles.playAgainContent}>
 					<Text style={styles.descriptionText}>
-						Let's Play Again?
+						Wanna Play Again?
 					</Text>
 					<View style={styles.buttonsArea}>
 						<Animated.View style={{ opacity: fadeAnim }}>

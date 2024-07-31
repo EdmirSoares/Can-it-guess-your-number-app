@@ -15,6 +15,7 @@ export default function GameScreen() {
 		guessNumberMaxHandler,
 		isDisabled,
 		guessRounds,
+		computerChances,
 		randomNumberGenerated,
 	} = useApp();
 
@@ -30,6 +31,9 @@ export default function GameScreen() {
 						</Animated.View>
 					</View>
 					<View style={styles.smallTextContainer}>
+						<Text style={styles.smallText}>
+							CPU Rounds Left: {computerChances}
+						</Text>
 						<Text style={styles.smallText}>
 							Attempts: {guessRounds}
 						</Text>

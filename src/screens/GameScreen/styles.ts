@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
 		fontFamily: "PixelifySans",
 	},
 	smallTextContainer: {
-		alignSelf: "flex-end",
+		width: "100%",
+		flexDirection: "row",
+		justifyContent: "space-between",
 	},
 	smallText: {
 		color: "#fff",
