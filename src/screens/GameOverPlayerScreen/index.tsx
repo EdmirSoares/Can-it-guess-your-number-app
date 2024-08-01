@@ -5,7 +5,7 @@ import {
 	TouchableOpacity,
 	Animated,
 } from "react-native";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { MaterialCommunityIcons, Feather } from "@expo/vector-icons/";
 import useApp from "./useApp";
 import styles from "./styles";
 
@@ -35,7 +35,9 @@ export default function GameOverPlayerScreen() {
 								style={styles.button}
 								onPress={handleNavigateToGameScreen}
 							>
-								<Text style={styles.descriptionText}>Yes!</Text>
+								<Text style={styles.descriptionText}>
+									Yes...
+								</Text>
 							</TouchableOpacity>
 						</Animated.View>
 					</View>
