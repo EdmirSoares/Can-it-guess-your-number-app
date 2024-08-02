@@ -18,7 +18,7 @@ function Provider() {
 		"Poppins-Bold": require("../src/assets/fonts/Poppins-Bold.ttf"),
 		"Poppins-Medium": require("../src/assets/fonts/Poppins-Medium.ttf"),
 		"Anton-Regular": require("../src/assets/fonts/Anton-Regular.ttf"),
-		PixelifySans: require("../src/assets/fonts/PixelifySans-Regular.ttf"),
+		"PixelifySans": require("../src/assets/fonts/PixelifySans-Regular.ttf"),
 	});
 
 	useEffect(() => {

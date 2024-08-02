@@ -11,11 +11,12 @@ interface RouteParams {
 
 export default function useApp() {
 	const navigation = useNavigation<GameScreenNavigationProp>();
-	const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
+	const route = useRoute<RouteProp<{ params: RouteParams; }, "params">>();
 
 	const userNumber = route.params?.userNumber;
 	const guessRounds = route.params?.guessRounds;
 
+	const fadeAnim = useRef(new Animated.Value(0)).current;
 	const fadeAnims = [
 		useRef(new Animated.Value(0)).current,
 		useRef(new Animated.Value(0)).current,
@@ -27,7 +28,7 @@ export default function useApp() {
 		useRef(new Animated.Value(0)).current,
 	];
 
-	const durations = [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500];
+	const durations = [1200, 2500, 800, 1500, 1000, 2000, 1300, 600];
 
 	const animatedStyle = (style: any, fadeAnim: Animated.Value) => ({
 		...style,
@@ -58,6 +59,27 @@ export default function useApp() {
 		return () => loop.stop();
 	}, [fadeAnims, durations]);
 
+	useEffect(() => {
+		const loop = Animated.loop(
+			Animated.sequence([
+				Animated.timing(fadeAnim, {
+					toValue: 1,
+					duration: 1000,
+					useNativeDriver: true,
+				}),
+				Animated.timing(fadeAnim, {
+					toValue: 0,
+					duration: 1000,
+					useNativeDriver: true,
+				}),
+			])
+		);
+
+		loop.start();
+
+		return () => loop.stop();
+	}, [fadeAnim]);
+
 	function handleNavigateToGameScreen() {
 		navigation.navigate("Home");
 	}
@@ -66,6 +88,8 @@ export default function useApp() {
 		userNumber,
 		guessRounds,
 		animatedStyle,
+		handleNavigateToGameScreen,
+		fadeAnim,
 		fadeAnims,
 	};
 }

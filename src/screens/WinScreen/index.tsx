@@ -4,19 +4,19 @@ import styles from "./styles";
 import useApp from "./useApp";
 
 export default function WinScreen() {
-	const { userNumber, guessRounds, animatedStyle, fadeAnims } = useApp();
+	const { userNumber, guessRounds, handleNavigateToGameScreen, animatedStyle, fadeAnim, fadeAnims } = useApp();
 	return (
 		<View style={styles.container}>
 			<View style={styles.content}>
 				{[
-					{ size: 10, right: '38%', top: "23.5%" },
-					{ size: 12, right: '34%', top: "31%" },
-					{ size: 12, right: '40%', top: "28%" },
-					{ size: 14, right: '29%', top: "27%" },
-					{ size: 14, left: '38%', top: "23%" },
-					{ size: 12, left: '40%', top: "28%" },
-					{ size: 10, left: '29%', top: "26%" },
-					{ size: 12, left: '34%', top: "30%" },
+					{ size: 10, right: '38%', top: "22.5%" },
+					{ size: 12, right: '34%', top: "30%" },
+					{ size: 12, right: '40%', top: "27%" },
+					{ size: 14, right: '29%', top: "26%" },
+					{ size: 14, left: '38%', top: "22%" },
+					{ size: 12, left: '40%', top: "26%" },
+					{ size: 10, left: '29%', top: "27%" },
+					{ size: 12, left: '34%', top: "29%" },
 				].map((style, index) => (
 					<Animated.View
 						key={index}
@@ -31,25 +31,28 @@ export default function WinScreen() {
 					color="#FFF"
 				/>
 				<View style={styles.descriptionTextContainer}>
-					<Text style={styles.descriptionText}>
-						This time you won...
+					<Text style={styles.emphasisText}>
+						Ha! I won!
 					</Text>
 					<Text style={styles.descriptionText}>
-						The computer has lost!
+						Better luck next time!
 					</Text>
+					<Text style={styles.descriptionText}>{`I only needed ${guessRounds} tries to find that ${userNumber}\nwas your number!`}</Text>
 				</View>
 				<View style={styles.playAgainContent}>
 					<Text style={styles.descriptionText}>
 						Let's Play Again?
 					</Text>
-					<View style={styles.buttonsArea}>
-						<TouchableOpacity
-							style={styles.button}
-
-						>
-							<Text style={styles.descriptionText}>Yes!</Text>
-						</TouchableOpacity>
-					</View>
+					<Animated.View style={{ opacity: fadeAnim }}>
+						<View style={styles.buttonsArea}>
+							<TouchableOpacity
+								style={styles.button}
+								onPress={handleNavigateToGameScreen}
+							>
+								<Octicons name="smiley" size={14} color="#fff" />
+							</TouchableOpacity>
+						</View>
+					</Animated.View>
 				</View>
 			</View>
 		</View>

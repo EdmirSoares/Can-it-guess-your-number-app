@@ -39,7 +39,7 @@ export default function useApp() {
 			"Nice job, champ!\nYou tried to cheat and instantly lost the game. Impressive skills!",
 			"Wow, cheating and losing instantly?\nThat's a new level of dedication to failure!",
 			"Cheating and losing in the same game?\nYou must be a pro at this!",
-			"Impressive!\nYou cheated and the game ended instantly.\nMaybe losing is your true talent?",
+			"That's impressive!\nYou cheated and the game ended instantly.\nMaybe losing is your true talent?",
 		];
 
 		const randomIndex = Math.floor(Math.random() * phrases.length);

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 		padding: 6,
 		width: 220,
 		height: 220,
-		fontSize: 80,
+		fontSize: 90,
 		fontFamily: "PixelifySans",
 		textAlign: "center",
 		borderRadius: 999,

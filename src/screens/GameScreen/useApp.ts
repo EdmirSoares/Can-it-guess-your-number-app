@@ -15,19 +15,13 @@ export default function useApp() {
 	const [isMoreThan, setisMoreThan] = useState(1);
 	const [randomNumberGenerated, setRandomNumberGenerated] = useState(0);
 
-	const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
+	const route = useRoute<RouteProp<{ params: RouteParams; }, "params">>();
 	const userNumber = route.params?.userNumber || 0;
 	const navigation = useNavigation<GameScreenNavigationProp>();
 
 	useEffect(() => {
 		console.log("more: " + isMoreThan, "less: " + isLessThan);
 	}, [isLessThan, isMoreThan]);
-	useEffect(() => {
-		navigation.navigate("WinScreen", {
-			userNumber: userNumber,
-			guessRounds: guessRounds,
-		});
-	}, []);
 
 	function handlerPlayerVictory(
 		playerNumber: number,

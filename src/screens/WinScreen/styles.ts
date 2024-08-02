@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
 		fontFamily: "PixelifySans",
 		fontSize: 14,
 	},
+	emphasisText: {
+		color: "#fff",
+		textAlign: "center",
+		fontFamily: "PixelifySans",
+		fontSize: 16,
+	},
 	playAgainContent: {
 		height: 200,
 		width: "100%",
