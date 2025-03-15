@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
 		gap: 10,
 		backgroundColor: "#0b0b0b",
 		position: "relative",
+		marginTop: 24
 	},
 	resultContainer: {
 		flex: 2.5,
