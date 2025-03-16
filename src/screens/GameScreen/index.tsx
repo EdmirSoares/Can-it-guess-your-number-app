@@ -10,13 +10,13 @@ import Animated, { FadeIn } from "react-native-reanimated";
 export default function GameScreen() {
 	const {
 		randomNumberComputer,
-		newGameHandler,
-		guessNumberMinHandler,
-		guessNumberMaxHandler,
-		isDisabled,
-		guessRounds,
-		computerChances,
-		randomNumberGenerated,
+		resetGame,
+		handleLowerGuess,
+		handleHigherGuess,
+		isGuessingDisabled,
+		guessCount,
+		remainingChances,
+		currentGuess,
 	} = useApp();
 
 	return (
@@ -26,22 +26,22 @@ export default function GameScreen() {
 					<View style={styles.generatedNumberContainer}>
 						<Animated.View entering={FadeIn.duration(500)}>
 							<Text style={styles.generatedNumber}>
-								{randomNumberGenerated}
+								{currentGuess}
 							</Text>
 						</Animated.View>
 					</View>
 					<View style={styles.smallTextContainer}>
 						<Text style={styles.smallText}>
-							CPU Rounds Left: {computerChances}
+							CPU Rounds Left: {remainingChances}
 						</Text>
 						<Text style={styles.smallText}>
-							Attempts: {guessRounds}
+							Attempts: {guessCount}
 						</Text>
 					</View>
 				</View>
 			</View>
 			<View style={styles.descriptionTextContainer}>
-				{guessRounds > 0 ? (
+				{guessCount > 0 ? (
 					<Text style={styles.descriptionText}>
 						{`Is the chosen number\ngreater or lesser?`}
 					</Text>
@@ -56,9 +56,9 @@ export default function GameScreen() {
 				<View style={styles.leftButtonArea}>
 					<PlayButton
 						textButton={
-							isDisabled ? "Guess" : "Greater\nthan or less than?"
+							isGuessingDisabled ? "Guess" : "Greater\nthan or less than?"
 						}
-						disabled={!isDisabled}
+						disabled={!isGuessingDisabled}
 						onPress={() => randomNumberComputer()}
 					/>
 				</View>
@@ -66,14 +66,14 @@ export default function GameScreen() {
 				<View
 					style={[
 						styles.rightButtonArea,
-						{ opacity: !isDisabled ? 1 : 0.3 },
+						{ opacity: !isGuessingDisabled ? 1 : 0.3 },
 					]}
 				>
 					<View style={styles.rightEndButtonContainer}>
 						<SecondaryButton
-							disabled={isDisabled}
+							disabled={isGuessingDisabled}
 							icon={
-								isDisabled ? (
+								isGuessingDisabled ? (
 									<Octicons
 										name="blocked"
 										size={20}
@@ -87,14 +87,14 @@ export default function GameScreen() {
 									/>
 								)
 							}
-							onPress={guessNumberMinHandler}
+							onPress={handleLowerGuess}
 						/>
 					</View>
 					<View style={styles.rightStartButtonContainer}>
 						<SecondaryButton
-							disabled={isDisabled}
+							disabled={isGuessingDisabled}
 							icon={
-								isDisabled ? (
+								isGuessingDisabled ? (
 									<Octicons
 										name="blocked"
 										size={20}
@@ -108,7 +108,7 @@ export default function GameScreen() {
 									/>
 								)
 							}
-							onPress={guessNumberMaxHandler}
+							onPress={handleHigherGuess}
 						/>
 					</View>
 				</View>
@@ -116,7 +116,7 @@ export default function GameScreen() {
 			<View style={styles.footerContainer}>
 				<PrimaryButton
 					textButton="Restart Game"
-					onPress={newGameHandler}
+					onPress={resetGame}
 				/>
 			</View>
 		</View>
