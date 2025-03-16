@@ -4,12 +4,11 @@
 		"slug": "mini-game-app",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/icon.png",
+		"icon": "./assets/splash-teste.png",
 		"userInterfaceStyle": "light",
 		"splash": {
-			"image": "./assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
+			"backgroundColor": "#0b0b0b",
+			"resizeMode": "contain"
 		},
 		"ios": {
 			"supportsTablet": true,
@@ -17,14 +16,16 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/adaptive-icon.png",
-				"backgroundColor": "#ffffff"
+				"foregroundImage": "./assets/splash-teste.png",
+				"backgroundColor": "#0b0b0b"
 			},
 			"newArchEnabled": true
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
 		},
-		"plugins": ["expo-font"]
+		"plugins": [
+			"expo-font"
+		]
 	}
 }
