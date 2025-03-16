@@ -6,6 +6,7 @@ import PlayButton from "../../components/PlayButton";
 import SecondaryButton from "../../components/SecondaryButton";
 import { Feather, Octicons } from "@expo/vector-icons";
 import Animated, { FadeIn } from "react-native-reanimated";
+import {useDynamicFontSize} from "../../hooks/DynamicFontSize";
 
 export default function GameScreen() {
 	const {
@@ -18,6 +19,8 @@ export default function GameScreen() {
 		remainingChances,
 		currentGuess,
 	} = useApp();
+
+	const [titleSize, descriptionSize, smallTextSize] = useDynamicFontSize([24, 14, 12]);
 
 	return (
 		<View style={styles.container}>

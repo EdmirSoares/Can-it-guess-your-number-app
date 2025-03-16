@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: "100%",
 		padding: 40,
+		paddingTop: 60,
 		gap: 10,
 		backgroundColor: "#0b0b0b",
 		position: "relative",
-		marginTop: 24
 	},
 	resultContainer: {
 		flex: 2.5,
