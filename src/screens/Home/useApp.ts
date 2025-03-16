@@ -21,16 +21,12 @@ export default function useApp() {
 			}
 
 			if (enteredNumberConverted > 0 || enteredNumberConverted <= 99) {
-				console.log(
-					"Navigating to GameScreen with number:",
-					enteredNumberConverted
-				);
 				navigation.navigate("GameScreen", {
 					userNumber: enteredNumberConverted,
 				});
 			}
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}
 
