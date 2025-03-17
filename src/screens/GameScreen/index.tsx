@@ -20,7 +20,7 @@ export default function GameScreen() {
 		currentGuess,
 	} = useApp();
 
-	const [titleSize, descriptionSize, smallTextSize] = useDynamicFontSize([24, 14, 12]);
+	const [titleSize, descriptionSize, smallTextSize] = useDynamicFontSize([82, 14, 12]);
 
 	return (
 		<View style={styles.container}>
@@ -28,16 +28,16 @@ export default function GameScreen() {
 				<View style={styles.resultContent}>
 					<View style={styles.generatedNumberContainer}>
 						<Animated.View entering={FadeIn.duration(500)}>
-							<Text style={styles.generatedNumber}>
+							<Text style={[styles.generatedNumber, {fontSize: titleSize}]}>
 								{currentGuess}
 							</Text>
 						</Animated.View>
 					</View>
 					<View style={styles.smallTextContainer}>
-						<Text style={styles.smallText}>
+						<Text style={[styles.smallText,{ fontSize: smallTextSize}]}>
 							CPU Rounds Left: {remainingChances}
 						</Text>
-						<Text style={styles.smallText}>
+						<Text style={[styles.smallText,{ fontSize: smallTextSize}]}>
 							Attempts: {guessCount}
 						</Text>
 					</View>
@@ -45,12 +45,12 @@ export default function GameScreen() {
 			</View>
 			<View style={styles.descriptionTextContainer}>
 				{guessCount > 0 ? (
-					<Text style={styles.descriptionText}>
-						{`Is the chosen number\ngreater or lesser?`}
+					<Text style={[styles.descriptionText, { fontSize: descriptionSize }]}>
+						{`Is the chosen number\ngreater or less?`}
 					</Text>
 				) : (
-					<Text style={styles.descriptionText}>
-						{`Press guess to\nstart the game.`}
+					<Text style={[styles.descriptionText, { fontSize: descriptionSize }]}>
+						{`Press 'Guess'\nto start the game..`}
 					</Text>
 				)}
 			</View>
@@ -59,7 +59,7 @@ export default function GameScreen() {
 				<View style={styles.leftButtonArea}>
 					<PlayButton
 						textButton={
-							isGuessingDisabled ? "Guess" : "Greater\nthan or less than?"
+							isGuessingDisabled ? "Guess" : "Greater\nor less?"
 						}
 						disabled={!isGuessingDisabled}
 						onPress={() => randomNumberComputer()}

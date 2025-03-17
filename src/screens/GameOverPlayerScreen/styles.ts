@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 	playAgainContent: {
 		height: 200,
 		width: "100%",
-		gap: 6,
+		gap: 24,
 		alignItems: "center",
 		justifyContent: "center",
 	},
