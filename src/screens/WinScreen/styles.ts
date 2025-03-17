@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontFamily: "PixelifySans",
 		fontSize: 14,
+		letterSpacing: 0.5,
 	},
 	emphasisText: {
 		color: "#fff",
