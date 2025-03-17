@@ -13,32 +13,36 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
 import useApp from "./useApp";
 import { useState } from "react";
+import { useDynamicFontSize } from "../../hooks/DynamicFontSize";
+
 
 export default function Home() {
-	const [isvisible, setIsVisible] = useState(false);
+	const [isVisible, setIsVisible] = useState(false);
+	const [inputSize, titleSize, infoText, descriptionSize, smallTextSize] = useDynamicFontSize([92, 48, 18, 14, 14]);
+
 	const {
 		enteredNumber,
 		setEnteredNumber,
 		confirmInputHandler,
 		clearInputHandler,
 	} = useApp();
+
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<View style={styles.container}>
 				<View style={styles.contentWrapper}>
-					{!isvisible && (
+					{!isVisible && (
 						<>
 							<View style={styles.contentStart}>
 								<Animated.View entering={FadeIn.duration(500)}>
-									<Text style={styles.startText}>
-										{/* {`Outsmart\nThe\nComputer\nCan\nit\nGuess\nYour\nNumber?`} */}
+									<Text style={[styles.startText, { fontSize: titleSize }]}>
 										{`OUTSMART\nTHE COMPUTER!\nCAN IT\nGUESS\nYOUR\nNUMBER?`}
 									</Text>
 								</Animated.View>
 								<Animated.View
 									entering={FadeIn.duration(500).delay(300)}
 								>
-									<Text style={styles.descriptionStartText}>
+									<Text style={[styles.descriptionStartText, { fontSize: descriptionSize }]}>
 										{`Think of a number\n			between 1 and 99 and see
 									if the computer can guess it!`}
 									</Text>
@@ -54,7 +58,7 @@ export default function Home() {
 											setIsVisible((prev) => !prev)
 										}
 									>
-										<Text style={styles.startButtonText}>
+										<Text style={[styles.startButtonText, { fontSize: smallTextSize }]}>
 											Start
 										</Text>
 									</TouchableOpacity>
@@ -62,7 +66,7 @@ export default function Home() {
 							</View>
 						</>
 					)}
-					{isvisible && (
+					{isVisible && (
 						<>
 							<View
 								style={{
@@ -81,7 +85,7 @@ export default function Home() {
 											).delay(300)}
 										>
 											<TextInput
-												style={styles.numberInput}
+												style={[styles.numberInput, { fontSize: inputSize }]}
 												maxLength={2}
 												keyboardType="numeric"
 												cursorColor={"#000"}
@@ -99,7 +103,7 @@ export default function Home() {
 											700
 										)}
 									>
-										<Text style={styles.infoText}>
+										<Text style={[styles.infoText, { fontSize: infoText }]}>
 											Think of a number
 										</Text>
 									</Animated.View>
@@ -108,7 +112,7 @@ export default function Home() {
 											1000
 										)}
 									>
-										<Text style={styles.infoSubText}>
+										<Text style={[styles.infoSubText, { fontSize: smallTextSize }]}>
 											Enter a number between 1 and 99
 											above, press confirm to start the
 											game.
