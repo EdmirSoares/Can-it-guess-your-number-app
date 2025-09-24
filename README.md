@@ -1,4 +1,5 @@
 # Can It Guess Your Number?
+<img width="800" height="600" alt="presentation" src="https://github.com/user-attachments/assets/7107d99b-b808-40e0-87fb-353ac84ffb4e" />
 
 A fun number guessing game built with React Native and Expo where the computer tries to guess the number you're thinking of!
 
